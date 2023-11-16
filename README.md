@@ -37,7 +37,7 @@ module "azmonitor-action-groups" {
       actionGroupEmailReceiver = [
         {
           name                    = "example"
-          email_address           = "yadavarjun6@gmail.com"
+          email_address           = "yaxxxxxxxxxxxxxx@gmail.com"
           use_common_alert_schema = "true"
         },
         {
