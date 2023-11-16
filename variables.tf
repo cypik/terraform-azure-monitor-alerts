@@ -6,28 +6,16 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-variable "application" {
-  type        = string
-  default     = ""
-  description = "Application (e.g. `cd` or ``)."
-}
-
 variable "environment" {
   type        = string
   default     = ""
   description = "Environment (e.g. `prod`, `dev`, `staging`)."
 }
 
-variable "tags" {
-  type        = map(any)
-  default     = {}
-  description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
-}
-
 variable "managedby" {
   type        = string
-  default     = "opz0.com"
-  description = "ManagedBy, eg ''."
+  default     = ""
+  description = "ManagedBy, eg 'opz0'."
 }
 
 variable "label_order" {
