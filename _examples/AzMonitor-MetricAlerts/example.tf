@@ -4,8 +4,8 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source      = "git::git@github.com:opz0/terraform-azure-resource-group.git?ref=master"
-  name        = "app11"
+  source      = "git::https://github.com/opz0/terraform-azure-resource-group.git?ref=v1.0.0"
+  name        = "app"
   environment = "tested"
   location    = "North Europe"
 }
@@ -15,7 +15,6 @@ module "azmonitor-action-groups" {
   source      = "./../../"
   name        = "app"
   environment = "test"
-
   actionGroups = {
     "group1" = {
       actionGroupName      = "AlertEscalationGroup"
@@ -51,12 +50,10 @@ data "azurerm_kubernetes_cluster" "example" {
 }
 
 module "azmonitor-metric-alerts" {
-  depends_on = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
-  source     = "./../../"
-
+  depends_on  = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
+  source      = "./../../"
   name        = "app"
   environment = "test"
-
   metricAlerts = {
     "alert1" = {
       alertName              = "testing-alert"

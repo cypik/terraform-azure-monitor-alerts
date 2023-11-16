@@ -3,8 +3,8 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source      = "git::git@github.com:opz0/terraform-azure-resource-group.git?ref=master"
-  name        = "app21"
+  source      = "git::https://github.com/opz0/terraform-azure-resource-group.git?ref=v1.0.0"
+  name        = "app"
   environment = "tested"
   location    = "North Europe"
 }
@@ -46,12 +46,10 @@ data "azurerm_monitor_action_group" "example" {
 
 
 module "alerts" {
-  depends_on = [data.azurerm_monitor_action_group.example, ]
-  source     = "./../../"
-
+  depends_on  = [data.azurerm_monitor_action_group.example, ]
+  source      = "./../../"
   name        = "app"
   environment = "test"
-
   activity_log_alert = {
     "test1" = {
       alertname      = "vm-restart"
@@ -63,7 +61,7 @@ module "alerts" {
       category       = "Administrative"
     },
     "test2" = {
-      alertname      = "vm-/powerOff"
+      alertname      = "vm-powerOff"
       alertrg        = module.resource_group.resource_group_name
       alertscopes    = [module.resource_group.resource_group_id]
       description    = "Administrative alerts for vm"
