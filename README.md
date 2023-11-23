@@ -146,7 +146,7 @@ This example demonstrates how to create various AZURE resources using the provid
 - 'id':  The ID of the metric alert.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the ['Examples'](https://github.com/cypik/terraform-azure-monitor-alerts/tree/master/_examples) directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-azure-monitor-alerts/tree/master/_examples) directory within this repository.
 
 ## License
 This Terraform module is provided under the '[License Name]' License. Please see the [LICENSE](https://github.com/cypik/terraform-azure-monitor-alerts/blob/master/LICENSE) file for more details.
