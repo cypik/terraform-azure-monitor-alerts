@@ -25,7 +25,7 @@ for creating AZURE resources, and you can customize the inputs as needed. Below 
 
 ```hcl
 module "azmonitor-action-groups" {
-  source      = "git::https://github.com/opz0/terraform-azure-monitor-alerts.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-azure-monitor-alerts.git?ref=v1.0.0"
   name        = "app"
   environment = "test"
   actionGroups = {
@@ -56,7 +56,7 @@ module "azmonitor-action-groups" {
 ```hcl
 module "alerts" {
   depends_on  = [data.azurerm_monitor_action_group.example, ]
-  source      = "git::https://github.com/opz0/terraform-azure-monitor-alerts.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-azure-monitor-alerts.git?ref=v1.0.0"
   name        = "app"
   environment = "test"
   activity_log_alert = {
@@ -87,7 +87,7 @@ module "alerts" {
 ```hcl
 module "azmonitor-metric-alerts" {
   depends_on = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
-  source     = "git::https://github.com/opz0/terraform-azure-monitor-alerts.git?ref=v1.0.0"
+  source     = "git::https://github.com/cypik/terraform-azure-monitor-alerts.git?ref=v1.0.0"
   name        = "app"
   environment = "test"
   metricAlerts = {
@@ -146,10 +146,10 @@ This example demonstrates how to create various AZURE resources using the provid
 - 'id':  The ID of the metric alert.
 
 ## Examples
-For detailed examples on how to use this module, please refer to the 'examples' directory within this repository.
+For detailed examples on how to use this module, please refer to the ['Examples'](https://github.com/cypik/terraform-azure-monitor-alerts/tree/master/_examples) directory within this repository.
 
 ## License
-This Terraform module is provided under the '[License Name]' License. Please see the [LICENSE](https://github.com/opz0/terraform-azure-monitor-alerts/blob/master/LICENSE) file for more details.
+This Terraform module is provided under the '[License Name]' License. Please see the [LICENSE](https://github.com/cypik/terraform-azure-monitor-alerts/blob/master/LICENSE) file for more details.
 
 ## Author
 Your Name
