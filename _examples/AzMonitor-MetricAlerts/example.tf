@@ -29,7 +29,7 @@ module "azmonitor-action-groups" {
         },
         {
           name                    = "example"
-          email_address           = "example@gmail.com"
+          email_address           = "exaxxxxxxmple@gmail.com"
           use_common_alert_schema = "false"
         }
       ]
