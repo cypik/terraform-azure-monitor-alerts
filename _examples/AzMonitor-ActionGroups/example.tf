@@ -4,7 +4,8 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source      = "git::https://github.com/cypik/terraform-azure-resource-group.git?ref=v1.0.0"
+  source      = "cypik/resource-group/azure"
+  version     = "1.0.1"
   name        = "app11"
   environment = "tested"
   location    = "North Europe"
@@ -23,12 +24,12 @@ module "azmonitor-action-groups" {
       actionGroupEmailReceiver = [
         {
           name                    = "example"
-          email_address           = "yxxxxxxxxxxx@gmail.com"
+          email_address           = "yadavxxxxxxxgmail.com"
           use_common_alert_schema = "true"
         },
         {
           name                    = "test"
-          email_address           = "yadaxxxxxxxxxxxxxxgmail.com"
+          email_address           = "yadavxxxxxxxxxxxgmail.com"
           use_common_alert_schema = "true"
         }
       ]
