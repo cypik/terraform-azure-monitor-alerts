@@ -87,8 +87,8 @@ module "alerts" {
 
 ```hcl
 module "azmonitor-metric-alerts" {
-  depends_on = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
-  source     = "cypik/monitor-alerts/azure"
+  depends_on  = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
+  source      = "cypik/monitor-alerts/azure"
   version     = "1.0.2"
   name        = "app"
   environment = "test"
