@@ -4,7 +4,7 @@ provider "azurerm" {
 
 module "resource_group" {
   source      = "cypik/resource-group/azure"
-  version     = "1.0.1"
+  version     = "1.0.3"
   name        = "app"
   environment = "tested"
   location    = "North Europe"
@@ -37,13 +37,6 @@ data "azurerm_monitor_action_group" "example" {
   resource_group_name = module.resource_group.resource_group_name
   name                = "Notification"
 }
-
-#data "azurerm_network_security_group" "example" {
-#  depends_on          = [module.resource_group]
-#  name                = "example"
-#  resource_group_name = module.resource_group.resource_group_name
-#}
-
 
 
 module "alerts" {

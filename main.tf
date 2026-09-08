@@ -1,6 +1,6 @@
 module "labels" {
   source      = "cypik/labels/azure"
-  version     = "1.0.1"
+  version     = "1.0.3"
   name        = var.name
   environment = var.environment
   managedby   = var.managedby
@@ -58,6 +58,7 @@ resource "azurerm_monitor_activity_log_alert" "main" {
   for_each            = var.activity_log_alert
   name                = each.value.alertname
   resource_group_name = each.value.alertrg
+  location            = each.value.alertlocation
   scopes              = each.value.alertscopes
   description         = each.value.description
 

@@ -5,7 +5,7 @@ provider "azurerm" {
 
 module "resource_group" {
   source      = "cypik/resource-group/azure"
-  version     = "1.0.1"
+  version     = "1.0.3"
   name        = "app"
   environment = "tested"
   location    = "North Europe"
