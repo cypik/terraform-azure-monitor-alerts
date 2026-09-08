@@ -20,12 +20,12 @@ for creating AZURE resources, and you can customize the inputs as needed. Below 
 
 # Examples
 
-# Example: AzMonitor-ActionGroups
+# Example: action-groups
 
 ```hcl
 module "azmonitor-action-groups" {
   source      = "cypik/monitor-alerts/azure"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "app"
   environment = "test"
   actionGroups = {
@@ -51,13 +51,13 @@ module "azmonitor-action-groups" {
 }
 ```
 
-# Example: AzMonitor-ActivityLogAlerts
+# Example: activity-log-alerts
 
 ```hcl
 module "alerts" {
   depends_on  = [data.azurerm_monitor_action_group.example, ]
   source      = "cypik/monitor-alerts/azure"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "app"
   environment = "test"
   activity_log_alert = {
@@ -83,13 +83,13 @@ module "alerts" {
 }
 ```
 
-# Example: AzMonitor-MetricAlerts
+# Example: metric-alerts
 
 ```hcl
 module "azmonitor-metric-alerts" {
-  depends_on = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
-  source     = "cypik/monitor-alerts/azure"
-  version     = "1.0.1"
+  depends_on  = [data.azurerm_monitor_action_group.example, data.azurerm_kubernetes_cluster.example]
+  source      = "cypik/monitor-alerts/azure"
+  version     = "1.0.2"
   name        = "app"
   environment = "test"
   metricAlerts = {
@@ -154,20 +154,20 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.6 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.87.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15.8 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 5.4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.87.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 5.4.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/azure | 1.0.1 |
+| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/azure | 1.0.3 |
 
 ## Resources
 
@@ -182,10 +182,10 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_actionGroups"></a> [actionGroups](#input\_actionGroups) | n/a | <pre>map(object({<br>    actionGroupName          = string<br>    actionGroupShortName     = string<br>    actionGroupRGName        = string<br>    actionGroupEnabled       = string<br>    actionGroupEmailReceiver = list(map(string))<br>  }))</pre> | `{}` | no |
-| <a name="input_activity_log_alert"></a> [activity\_log\_alert](#input\_activity\_log\_alert) | n/a | <pre>map(object({<br>    alertname      = string<br>    alertrg        = string<br>    alertscopes    = list(string)<br>    description    = string<br>    operation_name = string<br>    actionGroupID  = string<br>    category       = string<br>  }))</pre> | `{}` | no |
+| <a name="input_activity_log_alert"></a> [activity\_log\_alert](#input\_activity\_log\_alert) | n/a | <pre>map(object({<br>    alertname      = string<br>    alertrg        = string<br>    alertlocation  = optional(string, "global")<br>    alertscopes    = list(string)<br>    description    = string<br>    operation_name = string<br>    actionGroupID  = string<br>    category       = string<br>  }))</pre> | `{}` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
 | <a name="input_label_order"></a> [label\_order](#input\_label\_order) | Label order, e.g. `name`,`application`. | `list(any)` | <pre>[<br>  "name",<br>  "environment"<br>]</pre> | no |
-| <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy, eg 'cypik'. | `string` | `"Cypik"` | no |
+| <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy, eg 'info@cypik.com' | `string` | `"info@cypik.com"` | no |
 | <a name="input_metricAlerts"></a> [metricAlerts](#input\_metricAlerts) | n/a | <pre>map(object({<br>    alertName                  = string<br>    alertResourceGroupName     = string<br>    alertScopes                = list(string)<br>    alertDescription           = string<br>    alertEnabled               = bool<br>    alertAutoMitigate          = bool<br>    alertFrequency             = string<br>    alertTargetResourceType    = string<br>    alertTargetResourceLoc     = string<br>    dynCriteriaMetricNamespace = string<br>    dynCriteriaMetricName      = string<br>    dynCriteriaAggregation     = string<br>    dynCriteriaOperator        = string<br>    dynCriteriathreshold       = string<br>    actionGroupID              = string<br>  }))</pre> | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | <a name="input_repository"></a> [repository](#input\_repository) | Terraform current module repo | `string` | `"https://github.com/cypik/terraform-azure-monitor-alerts"` | no |
@@ -194,6 +194,10 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_ag"></a> [ag](#output\_ag) | n/a |
-| <a name="output_metric-alerts"></a> [metric-alerts](#output\_metric-alerts) | n/a |
+| <a name="output_action_group_ids"></a> [action\_group\_ids](#output\_action\_group\_ids) | The IDs of the Monitor Action Groups. |
+| <a name="output_action_group_names"></a> [action\_group\_names](#output\_action\_group\_names) | The names of the Monitor Action Groups. |
+| <a name="output_activity_log_alert_ids"></a> [activity\_log\_alert\_ids](#output\_activity\_log\_alert\_ids) | The IDs of the Monitor Activity Log Alerts. |
+| <a name="output_activity_log_alert_names"></a> [activity\_log\_alert\_names](#output\_activity\_log\_alert\_names) | The names of the Monitor Activity Log Alerts. |
+| <a name="output_metric_alert_ids"></a> [metric\_alert\_ids](#output\_metric\_alert\_ids) | The IDs of the Monitor Metric Alerts. |
+| <a name="output_metric_alert_names"></a> [metric\_alert\_names](#output\_metric\_alert\_names) | The names of the Monitor Metric Alerts. |
 <!-- END_TF_DOCS -->

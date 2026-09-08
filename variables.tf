@@ -14,8 +14,8 @@ variable "environment" {
 
 variable "managedby" {
   type        = string
-  default     = "Cypik"
-  description = "ManagedBy, eg 'cypik'."
+  default     = "info@cypik.com"
+  description = "ManagedBy, eg 'info@cypik.com'"
 }
 
 variable "label_order" {
@@ -65,6 +65,7 @@ variable "activity_log_alert" {
   type = map(object({
     alertname      = string
     alertrg        = string
+    alertlocation  = optional(string, "global")
     alertscopes    = list(string)
     description    = string
     operation_name = string
